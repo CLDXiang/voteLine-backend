@@ -18,7 +18,11 @@
     },
     "dependencies": {
         "koa": "2",
+        "koa-bodyparser": "3",
         "koa-router": "7",
-        "koa-bodyparser": "3"
+        "mysql": "^2.17.1",
+        "mysql2": "^1.6.5",
+        "readline-sync": "^1.4.9",
+        "sequelize": "^5.7.0"
     }
 }

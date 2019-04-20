@@ -3,13 +3,9 @@ const bodyParser = require('koa-bodyparser');
 const controller = require('./controller');
 const { config } = require('./config');
 
-const app = new Koa();
 const { port_back, port_front } = config;
 
-// app.use(async (ctx, next) => {
-//     ctx.set('Access-Control-Allow-Origin', `*`);
-//     await next();
-// });
+const app = new Koa();
 
 app.use(async function (ctx, next) {
     ctx.set("Access-Control-Allow-Origin", '*');
