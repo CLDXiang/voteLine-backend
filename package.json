@@ -1,0 +1,24 @@
+{
+    "name": "voteline-backend",
+    "version": "0.1.0",
+    "description": "A web application. This is its backend.",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "keywords": [
+        "koa",
+        "async"
+    ],
+    "author": "CLDXiang",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CLDXiang/voteLine-backend.git"
+    },
+    "dependencies": {
+        "koa": "2",
+        "koa-router": "7",
+        "koa-bodyparser": "3"
+    }
+}
