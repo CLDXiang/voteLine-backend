@@ -1,6 +1,6 @@
-const dbhandler = require('../dbhandler')();
+const dbhandler = require('../dbhandler');
 
-addUser = async(email, password, nickname) => {
+const addUser = async(email, password, nickname) => {
     User = dbhandler.User;
     result = {
         existingEmail: false,

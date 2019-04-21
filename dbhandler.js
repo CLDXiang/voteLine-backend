@@ -55,5 +55,5 @@ const dbhandler = () => {
     return models;
 }
 
-module.exports = dbhandler;
+module.exports = dbhandler();
 
