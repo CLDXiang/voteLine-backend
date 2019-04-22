@@ -48,8 +48,76 @@ const dbhandler = () => {
             // options
         });
 
+    const Investigation = sequelize.define('investigation', {
+        iid: {
+            type: Sequelize.BIGINT(20),
+            primaryKey: true,
+            allowNull: false,
+            unique: true,
+        },
+        title: {
+            type: Sequelize.STRING(45),
+            allowNull: false,
+        },
+        description: {
+            type: Sequelize.STRING(255),
+            allowNull: true,
+        },
+        timeend: {
+            type: Sequelize.DATE,
+            allowNull: false,
+        },
+        multiple: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+        },
+        itype: {
+            type: Sequelize.STRING(20),
+            allowNull: false,
+        },
+        createruid: {
+            type: Sequelize.BIGINT(20),
+            allowNull: false,
+            references: {
+                model: User,
+                key: 'uid',
+            }
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE,
+    });
+
+    const Option = sequelize.define('option', {
+        oid: {
+            type: Sequelize.BIGINT(20),
+            primaryKey: true,
+            allowNull: false,
+            unique: true,
+        },
+        content: {
+            type: Sequelize.STRING(45),
+            allowNull: false,
+        },
+        number: {
+            type: Sequelize.BIGINT(10),
+            allowNull: true,
+        },
+        iid: {
+            type: Sequelize.BIGINT(20),
+            allowNull: false,
+            references: {
+                model: Investigation,
+                key: 'iid',
+            }
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE,
+    });
+
     const models = {
         User: User,
+        Investigation: Investigation,
+        Option: Option,
     }
 
     return models;

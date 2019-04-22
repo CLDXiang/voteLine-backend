@@ -36,6 +36,7 @@ const Login = async (email, password) => {
                 result.success = true;
                 result.nickname = user.nickname;
                 result.userType = user.utype;
+                result.uid = user.uid;
             } else {
                 // 密码不对
                 console.log('wrong password!');
