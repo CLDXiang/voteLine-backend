@@ -48,9 +48,9 @@ const Login = async (email, password) => {
 }
 
 const handle_login = async (ctx, next) => {
-    const
-        email = ctx.request.body.email,
-        password = ctx.request.body.password;
+    const { email, password } = ctx.request.body;
+    // email = ctx.request.body.email,
+    // password = ctx.request.body.password;
     console.log(`email:${email}, password:${password}`);
     // 这一块用来和数据库交互，并且检查是否成功
     const result = await Login(email, password);

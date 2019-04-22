@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const readlineSync = require('readline-sync');
 const { config } = require('./config');
+const Op = Sequelize.Op;
 
 const dbhandler = () => {
     const { port_back, port_front, port_db, schema, username } = config;
@@ -83,6 +84,10 @@ const dbhandler = () => {
                 key: 'uid',
             }
         },
+        votercount: {
+            type: Sequelize.BIGINT(10),
+            allowNull: false,
+        },
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE,
     });
@@ -118,6 +123,8 @@ const dbhandler = () => {
         User: User,
         Investigation: Investigation,
         Option: Option,
+        Op: Op,
+        sequelize: sequelize,
     }
 
     return models;
