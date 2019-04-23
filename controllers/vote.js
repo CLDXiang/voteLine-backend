@@ -17,7 +17,7 @@ const addChoose = async (options, uid, ip, region) => {
         }
     });
 
-    console.log('option_',option_);
+    console.log('option_', option_);
 
     options_ = await Option.findAll({
         where: {
@@ -25,8 +25,8 @@ const addChoose = async (options, uid, ip, region) => {
         }
     });
 
-    console.log("options_",options_)
-    
+    console.log("options_", options_)
+
 
     for (option of options_) {
         await Choose.findOne({
@@ -46,6 +46,7 @@ const addChoose = async (options, uid, ip, region) => {
     // 都没有则写入
     if (!result.existingChoose) {
         for (option of options) {
+            // 写入Choose
             await Choose.create({
                 uid: uid,
                 oid: option,
@@ -58,6 +59,22 @@ const addChoose = async (options, uid, ip, region) => {
             }).catch(() => {
                 catchError = true;
             });
+            // 找到对应option
+            op = await Option.findOne({
+                where: {
+                    oid: option,
+                }
+            });
+            // 将对应option的number++
+            await Option.update({ number: op.number + 1 }, { where: { oid: op.oid } });
+            // 找到对应的inv
+            inv = await Investigation.findOne({
+                where: {
+                    iid: option_.iid,
+                }
+            }); 
+            // 将对应的inv的votercount++
+            await Investigation.update({ votercount: inv.votercount + 1 }, { where: { iid: inv.iid } });
         }
         if (!catchError) {
             result.success = true;

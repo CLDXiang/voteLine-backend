@@ -51,7 +51,7 @@ const getInv = async (iid, uid) => {
             await Choose.findOne({
                 where: {
                     uid: uid,
-                    oid: option,
+                    oid: option.oid,
                 }
             }).then((choose) => {
                 if (choose) {
