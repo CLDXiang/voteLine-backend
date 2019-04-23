@@ -52,13 +52,6 @@ const addInv = async (title, description, timeEnd, multiple, itype, createrUid, 
 
 const handle_newinv = async (ctx, next) => {
     const { title, description, timeEnd, multiple, itype, createrUid, options } = ctx.request.body;
-    // title = ctx.request.body.title,
-    // description = ctx.request.body.description,
-    // timeEnd = ctx.request.body.timeEnd,
-    // multiple = ctx.request.body.multiple,
-    // itype = ctx.request.body.itype,
-    // createrUid = ctx.request.body.createrUid,
-    // options = ctx.request.body.options;
     console.log(`title:${title}, description:${description}, timeEnd:${timeEnd},multiple:${multiple}, itype:${itype}, createrUid:${createrUid}, options:${options}`);
     // 这一块用来和数据库交互，并且检查是否成功
     const result = await addInv(title, description, timeEnd, multiple, itype, createrUid, options);

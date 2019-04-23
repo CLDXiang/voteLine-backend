@@ -53,9 +53,6 @@ const addUser = async (email, password, nickname) => {
 
 const handle_register = async (ctx, next) => {
     const { email, password, nickname } = ctx.request.body;
-    // email = ctx.request.body.email,
-    // password = ctx.request.body.password,
-    // nickname = ctx.request.body.nickname;
     console.log(`email:${email}, password:${password}, nickname:${nickname}`);
     // 这一块用来和数据库交互，并且检查是否成功
     const result = await addUser(email, password, nickname);

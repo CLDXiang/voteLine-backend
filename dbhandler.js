@@ -119,10 +119,42 @@ const dbhandler = () => {
         updatedAt: Sequelize.DATE,
     });
 
+    const Choose = sequelize.define('choose', {
+        uid: {
+            type: Sequelize.BIGINT(20),
+            primaryKey: true,
+            allowNull: false,
+            references: {
+                model: User,
+                key: 'uid',
+            }
+        },
+        oid: {
+            type: Sequelize.BIGINT(20),
+            primaryKey: true,
+            allowNull: false,
+            references: {
+                model: Option,
+                key: 'oid',
+            }
+        },
+        ip: {
+            type: Sequelize.STRING(45),
+            allowNull: false,
+        },
+        region: {
+            type: Sequelize.STRING(45),
+            allowNull: true,
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE,
+    });
+
     const models = {
         User: User,
         Investigation: Investigation,
         Option: Option,
+        Choose: Choose,
         Op: Op,
         sequelize: sequelize,
     }
