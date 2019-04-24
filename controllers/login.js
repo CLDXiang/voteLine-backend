@@ -1,5 +1,6 @@
 const dbhandler = require('../dbhandler');
 
+// 用户登录
 const Login = async (email, password) => {
     User = dbhandler.User;
     result = {
@@ -9,6 +10,7 @@ const Login = async (email, password) => {
         nickname: '',
         userType: 'visitor',
     };
+    
     // 查找email
     await User.findOne({
         where: {

@@ -1,5 +1,6 @@
 const dbhandler = require('../dbhandler');
 
+// 投票逻辑，即增加Choose
 const addChoose = async (options, uid, ip, region) => {
     const { Choose, Investigation, Option } = dbhandler;
     result = {
@@ -11,23 +12,24 @@ const addChoose = async (options, uid, ip, region) => {
     // 先用一个option找到iid
     // 找出该iid的所有options
     // 在Choose查找[uid, oid]，若找到则存在
+
+    // 通过一个oid找到选项
     option_ = await Option.findOne({
         where: {
             oid: options[0],
         }
     });
+    // console.log('option_', option_);
 
-    console.log('option_', option_);
-
+    // 通过上述选项的iid找到该投票的所有选项
     options_ = await Option.findAll({
         where: {
             iid: option_.iid,
         }
     });
+    // console.log("options_", options_)
 
-    console.log("options_", options_)
-
-
+    // 查找是否有任一选项被该用户投过
     for (option of options_) {
         await Choose.findOne({
             where: {
@@ -43,10 +45,10 @@ const addChoose = async (options, uid, ip, region) => {
     }
 
     let catchError = false;
-    // 都没有则写入
+    // 都没有则写入Choose
     if (!result.existingChoose) {
         for (option of options) {
-            // 写入Choose
+            // 逐个写入Choose
             await Choose.create({
                 uid: uid,
                 oid: option,
@@ -73,7 +75,7 @@ const addChoose = async (options, uid, ip, region) => {
             where: {
                 iid: option_.iid,
             }
-        }); 
+        });
         // 将对应的inv的votercount++
         await Investigation.update({ votercount: inv.votercount + 1 }, { where: { iid: inv.iid } });
         if (!catchError) {

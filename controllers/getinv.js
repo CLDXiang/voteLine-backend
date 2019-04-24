@@ -1,5 +1,6 @@
 const dbhandler = require('../dbhandler');
 
+// 得到投票Investigation的信息，包括其选项与创建者
 const getInv = async (iid, uid) => {
     const { Investigation, Option, User, Choose } = dbhandler;
     result = {
@@ -12,7 +13,7 @@ const getInv = async (iid, uid) => {
         votedOptions: [],
     };
 
-    // 查找inv
+    // 查找该投票
     await Investigation.findOne({
         where: {
             iid: iid,
@@ -28,11 +29,13 @@ const getInv = async (iid, uid) => {
 
     // 找到了iid
     if (!result.wrongIid) {
+        // 查找该投票所有选项
         result.options = await Option.findAll({
             where: {
                 iid: iid,
             },
         });
+        // 查找该投票创建人
         await User.findOne({
             where: {
                 uid: result.inv.createruid,

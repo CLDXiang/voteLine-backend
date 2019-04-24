@@ -4,11 +4,14 @@ const { config } = require('./config');
 const Op = Sequelize.Op;
 
 const dbhandler = () => {
-    const { port_back, port_front, port_db, schema, username } = config;
+    const { port_db, schema, username } = config;
+
+    // 权限验证
     const pwd = readlineSync.question('请输入管理员密码：', {
         hideEchoBack: true
     });
 
+    // 连接数据库
     const sequelize = new Sequelize(`mysql://${username}:${pwd}@localhost:${port_db}/${schema}`);
     sequelize.authenticate().then(() => {
         console.log('Connection to the database has been established successfully.');
@@ -17,7 +20,7 @@ const dbhandler = () => {
         throw err;
     });
 
-    // models
+    // 定义模型
     const User = sequelize.define('user', {
         uid: {
             type: Sequelize.BIGINT(20),

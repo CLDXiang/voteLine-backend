@@ -3,10 +3,11 @@ const bodyParser = require('koa-bodyparser');
 const controller = require('./controller');
 const { config } = require('./config');
 
-const { port_back, port_front } = config;
+const { port_back } = config;
 
 const app = new Koa();
 
+// 设置返回请求头
 app.use(async function (ctx, next) {
     ctx.set("Access-Control-Allow-Origin", '*');
     ctx.set("Access-Control-Allow-Credentials", true);

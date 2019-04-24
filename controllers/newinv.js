@@ -1,5 +1,6 @@
 const dbhandler = require('../dbhandler');
 
+// 新建投票
 const addInv = async (title, description, timeEnd, multiple, itype, createrUid, options) => {
     const { Investigation, Option } = dbhandler;
     result = {
@@ -8,9 +9,11 @@ const addInv = async (title, description, timeEnd, multiple, itype, createrUid, 
     };
     maxIid = 0;
     maxOid = 0;
+    // 找到最大的iid
     await Investigation.max('iid').then((max) => {
         maxIid = (max || 0);
     });
+
     // 写入新投票
     await Investigation.create({
         iid: maxIid + 1,
@@ -29,9 +32,11 @@ const addInv = async (title, description, timeEnd, multiple, itype, createrUid, 
 
     // 写入新选项
     if (result.success === true) {
+        // 找到最大oid
         await Option.max('oid').then((max) => {
             maxOid = (max || 0);
         });
+        // 逐个写入选项
         options.map(async (option) => {
             maxOid++;
             await Option.create({

@@ -1,5 +1,6 @@
 const dbhandler = require('../dbhandler');
 
+// 注册，即增加用户
 const addUser = async (email, password, nickname) => {
     User = dbhandler.User;
     result = {
