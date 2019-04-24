@@ -67,15 +67,15 @@ const addChoose = async (options, uid, ip, region) => {
             });
             // 将对应option的number++
             await Option.update({ number: op.number + 1 }, { where: { oid: op.oid } });
-            // 找到对应的inv
-            inv = await Investigation.findOne({
-                where: {
-                    iid: option_.iid,
-                }
-            }); 
-            // 将对应的inv的votercount++
-            await Investigation.update({ votercount: inv.votercount + 1 }, { where: { iid: inv.iid } });
         }
+        // 找到对应的inv
+        inv = await Investigation.findOne({
+            where: {
+                iid: option_.iid,
+            }
+        }); 
+        // 将对应的inv的votercount++
+        await Investigation.update({ votercount: inv.votercount + 1 }, { where: { iid: inv.iid } });
         if (!catchError) {
             result.success = true;
         }
