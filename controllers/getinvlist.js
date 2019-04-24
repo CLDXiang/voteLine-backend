@@ -37,6 +37,19 @@ const getInvList = async (count, startIndex, itype, pattern, orderBy) => {
             },
             order: sequelize.literal('createdAt'),
         });
+    } else if (orderBy === 'hot') {
+        // 查找满足条件的所有投票
+        invList = await Investigation.findAll({
+            where: {
+                itype: {
+                    [Op.regexp]: `${itype}.*`
+                },
+                title: {
+                    [Op.regexp]: `.*${pattern}.*`
+                }
+            },
+            order: sequelize.literal('votercount DESC, createdAt DESC'),
+        });
     }
     // TODO: add more...
 
