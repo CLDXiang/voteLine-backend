@@ -1,5 +1,6 @@
 const dbhandler = require('../dbhandler');
 
+// 删除投票Investigation
 const deleteInv = async (iid) => {
     const { Investigation, Option, Choose } = dbhandler;
     result = {
@@ -13,7 +14,7 @@ const deleteInv = async (iid) => {
         where: {
             iid: iid,
         }
-    }).catch(()=>{
+    }).catch(() => {
         catchError = true;
     });
 
@@ -24,7 +25,7 @@ const deleteInv = async (iid) => {
             where: {
                 oid: option.oid,
             }
-        }).catch(()=>{
+        }).catch(() => {
             catchError = true;
         });
         // 删除该选项
@@ -32,7 +33,7 @@ const deleteInv = async (iid) => {
             where: {
                 oid: option.oid,
             }
-        }).catch(()=>{
+        }).catch(() => {
             catchError = true;
         });
     }
@@ -42,7 +43,7 @@ const deleteInv = async (iid) => {
         where: {
             iid: iid,
         }
-    }).catch(()=>{
+    }).catch(() => {
         catchError = true;
     });
 
