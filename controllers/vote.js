@@ -82,8 +82,6 @@ const addChoose = async (options, uid, ip, region) => {
             result.success = true;
         }
     }
-
-
     return result;
 }
 

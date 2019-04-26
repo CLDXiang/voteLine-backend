@@ -9,6 +9,7 @@ const Login = async (email, password) => {
         wrongPwd: false,
         nickname: '',
         userType: 'visitor',
+        uid: -1,
     };
     
     // 查找email
