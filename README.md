@@ -49,4 +49,4 @@ npm start
 
 ## 设计文档
 
-参见[documents.md](https://github.com/CLDXiang/voteLine-backend/blob/master/document.md)
+参见[document.md](https://github.com/CLDXiang/voteLine-backend/blob/master/document.md)
